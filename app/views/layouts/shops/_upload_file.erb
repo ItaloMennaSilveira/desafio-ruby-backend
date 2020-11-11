@@ -1,0 +1,13 @@
+<div class="mt-5 mb-5 text-center">
+  <%= form_for :file, url: upload_file_path do |form| %>
+    <div>
+      <label class="btn btn-secondary mt-2">
+        Adicionar um arquivo
+        <span style="display:none;">
+          <%= form.file_field :file %>
+        </span>
+      </label>
+      <%= form.submit "Enviar", class: "btn btn-primary ml-3"%>
+    </div>
+  <% end %>
+</div>

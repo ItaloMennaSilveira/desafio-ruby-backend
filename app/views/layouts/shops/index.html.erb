@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center font-weight-bold">Listagem do conteúdo do arquivo CNAB</h1>
+
+<%= render 'upload_file' %>
+
+<table class='table'>
+  <thead class='thead-dark'>
+    <tr>
+      <th class="align-middle"> Nome da Loja </th>
+      <th class="align-middle"> Saldo Total da Loja </th>
+      <th class="align-middle"> Valor da Ocorrência </th>
+      <th class="align-middle"> Tipo da Ocorrência </th>
+      <th class="align-middle"> Data de Ocorrência </th>
+      <th class="align-middle"> Hora da Ocorrência </th>
+      <th class="align-middle"> Cartão de crédito </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shops.each do |shop, transactions| %>
+      <tr>
+        <td rowspan='<%= transactions.size %>' class="align-middle"> <%= shop.name %></td>
+        <td rowspan='<%= transactions.size %>' class="align-middle"><%= shop.balance %></td>
+        <% transactions.each do |transaction| %>
+          <td class="align-middle"><%= transaction.value %></td>
+          <td class="align-middle"><%= transaction.transaction_type %></td>
+          <td class="align-middle"><%= transaction.occurrence_date %></td>
+          <td class="align-middle"><%= transaction.hour %></td>
+          <td class="align-middle"><%= transaction.credit_card %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <% if @shops.empty? %>
+      <tr>
+        <td colspan="7" class="text-center font-weight-bold display-4"> Não há dados </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="7" class="text-center font-weight-bold"> Total <%= Transaction.balance %></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
