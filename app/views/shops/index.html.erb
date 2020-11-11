@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="text-center font-weight-bold">Listagem do conteúdo do arquivo CNAB</h1>
+<h1 class="text-center font-weight-bold"><%= t('.title') %></h1>
 
 <%= render 'upload_file' %>
 
 <table class='table'>
   <thead class='thead-dark'>
     <tr>
-      <th class="align-middle"> Nome da Loja </th>
-      <th class="align-middle"> Saldo Total da Loja </th>
-      <th class="align-middle"> Valor da Ocorrência </th>
-      <th class="align-middle"> Tipo da Ocorrência </th>
-      <th class="align-middle"> Data de Ocorrência </th>
-      <th class="align-middle"> Hora da Ocorrência </th>
-      <th class="align-middle"> Cartão de crédito </th>
+      <th class="align-middle"><%= t('.table.name') %></th>
+      <th class="align-middle"><%= t('.table.total_balance_shop') %></th>
+      <th class="align-middle"><%= t('.table.occurrence_value') %></th>
+      <th class="align-middle"><%= t('.table.transaction_type') %></th>
+      <th class="align-middle"><%= t('.table.occurrence_date') %></th>
+      <th class="align-middle"><%= t('.table.occurrence_hour') %></th>
+      <th class="align-middle"><%= t('.table.credit_card') %></th>
     </tr>
   </thead>
 
@@ -48,7 +48,7 @@
         colspan="7"
         class="text-center font-weight-bold <%= Transaction.balance.positive? ? 'bg-success' : 'bg-danger' %>"
       >
-        Total <%= number_to_currency(Transaction.balance, unit: "R$ ") %>
+      <%= t('.total') %> <%= number_to_currency(Transaction.balance, unit: "R$ ") %>
       </td>
     </tr>
   </tbody>

@@ -1,0 +1,15 @@
+'pt-BR':
+  shops:
+    index:
+      title: Listagem do conteúdo do arquivo CNAB
+      table:
+        name: Nome da Loja
+        total_balance_shop: Saldo Total da Loja
+        occurrence_value: Valor da Ocorrência
+        transaction_type: Tipo da Ocorrência
+        occurrence_date: Data de Ocorrência
+        occurrence_hour: Hora da Ocorrência
+        credit_card: Cartão de Crédito
+      total: Total
+    upload_file:
+      send: Enviar
