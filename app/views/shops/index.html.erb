@@ -20,12 +20,19 @@
   <tbody>
     <% @shops.each do |shop, transactions| %>
       <tr>
-        <td rowspan='<%= transactions.size %>' class="align-middle"> <%= shop.name %></td>
-        <td rowspan='<%= transactions.size %>' class="align-middle"><%= shop.balance %></td>
+        <td rowspan='<%= transactions.size %>' class="align-middle">
+          <%= shop.name %>
+        </td>
+        <td
+          rowspan='<%= transactions.size %>'
+          class='align-middle <%= shop.balance.positive? ? 'bg-success' : 'bg-danger' %>'
+        >
+          <%= number_to_currency(shop.balance, unit: "R$ ") %>
+        </td>
         <% transactions.each do |transaction| %>
-          <td class="align-middle"><%= transaction.value %></td>
+          <td class="align-middle"><%= number_to_currency(transaction.value, unit: "R$ ") %></td>
           <td class="align-middle"><%= transaction.transaction_type %></td>
-          <td class="align-middle"><%= transaction.occurrence_date %></td>
+          <td class="align-middle"><%= transaction.occurrence_date.strftime('%d/%m/%Y') %></td>
           <td class="align-middle"><%= transaction.hour %></td>
           <td class="align-middle"><%= transaction.credit_card %></td>
         </tr>
@@ -37,9 +44,13 @@
       </tr>
     <% end %>
     <tr>
-      <td colspan="7" class="text-center font-weight-bold"> Total <%= Transaction.balance %></td>
+      <td
+        colspan="7"
+        class="text-center font-weight-bold <%= Transaction.balance.positive? ? 'bg-success' : 'bg-danger' %>"
+      >
+        Total <%= number_to_currency(Transaction.balance, unit: "R$ ") %>
+      </td>
     </tr>
   </tbody>
 </table>
-
 <br>
