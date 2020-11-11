@@ -17,5 +17,8 @@ module DesafioRubyBackend
     # the framework and any gems in your application.
     config.autoload_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')
+
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.default_locale = 'pt-BR'
   end
 end
