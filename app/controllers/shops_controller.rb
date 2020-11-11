@@ -11,6 +11,6 @@ class ShopsController < ApplicationController
     processor = ::CNAB::Services::ProcessFile.new
     processor.call(file)
 
-    redirect_to shops_path
+    redirect_to index_path
   end
 end
