@@ -10,6 +10,6 @@ require 'faker'
 
 User.create(
   email: 'admin@admin',
-  password: 'admin',
-  password_confirmation: 'admin'
+  password: '123456',
+  password_confirmation: '123456'
 )
