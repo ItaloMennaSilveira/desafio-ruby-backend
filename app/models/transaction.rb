@@ -27,4 +27,27 @@ class Transaction < ApplicationRecord
     :financiamento,
     :aluguel
   ]
+
+  scope :positive_transactions, ->{ where(transaction_type: POSITIVE_OPERATIONS)}
+  scope :negative_transactions, ->{ where(transaction_type: NEGATIVE_OPERATIONS)}
+
+  before_save :parse_value
+  before_save :parse_hour
+
+  def self.balance
+    positive = self.positive_transactions.sum("value")
+    negative = self.negative_transactions.sum("value")
+
+    positive - negative
+  end
+
+  private
+
+  def parse_value
+    value.to_f / 100.0
+  end
+
+  def parse_hour
+    hour.insert(2, ':').insert(5, ':')
+  end
 end
