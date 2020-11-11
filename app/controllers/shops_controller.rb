@@ -1,4 +1,6 @@
 class ShopsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @shops = Transaction.all.group_by(&:shop)
   end
