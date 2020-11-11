@@ -5,8 +5,8 @@ class Shop < ApplicationRecord
   validates :name, uniqueness: true
 
   def balance
-    positive = self.transactions.positive_transactions.sum("value")
-    negative = self.transactions.negative_transactions.sum("value")
+    positive = transactions.positive_transactions.sum('value')
+    negative = transactions.negative_transactions.sum('value')
 
     positive - negative
   end

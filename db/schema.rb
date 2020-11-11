@@ -10,38 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_001040) do
-
+ActiveRecord::Schema.define(version: 20_201_111_001_040) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "beneficiaries", force: :cascade do |t|
-    t.string "name"
-    t.string "cpf"
-    t.bigint "shop_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["shop_id"], name: "index_beneficiaries_on_shop_id"
+  create_table 'beneficiaries', force: :cascade do |t|
+    t.string 'name'
+    t.string 'cpf'
+    t.bigint 'shop_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['shop_id'], name: 'index_beneficiaries_on_shop_id'
   end
 
-  create_table "shops", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'shops', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "transactions", force: :cascade do |t|
-    t.integer "transaction_type"
-    t.date "occurrence_date"
-    t.decimal "value"
-    t.string "credit_card"
-    t.string "hour"
-    t.bigint "shop_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["shop_id"], name: "index_transactions_on_shop_id"
+  create_table 'transactions', force: :cascade do |t|
+    t.integer 'transaction_type'
+    t.date 'occurrence_date'
+    t.decimal 'value'
+    t.string 'credit_card'
+    t.string 'hour'
+    t.bigint 'shop_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['shop_id'], name: 'index_transactions_on_shop_id'
   end
 
-  add_foreign_key "beneficiaries", "shops"
-  add_foreign_key "transactions", "shops"
+  add_foreign_key 'beneficiaries', 'shops'
+  add_foreign_key 'transactions', 'shops'
 end

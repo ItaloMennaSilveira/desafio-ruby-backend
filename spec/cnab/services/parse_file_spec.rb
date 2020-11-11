@@ -3,7 +3,7 @@ require 'rails_helper'
 describe CNAB::Services::ParseFile do
   context 'when service receives a file content' do
     it 'should create a shop beneficiary and transaction' do
-      file = open("cnab.txt", 'rb')
+      file = open('cnab.txt', 'rb')
 
       parse_file = described_class.new
       subject = parse_file.call(file)

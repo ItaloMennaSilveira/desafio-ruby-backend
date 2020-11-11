@@ -13,30 +13,30 @@ class Transaction < ApplicationRecord
     aluguel: 9
   }
 
-  POSITIVE_OPERATIONS = [
-    :debito,
-    :credito,
-    :recebimento_emprestimo,
-    :vendas,
-    :recebimento_ted,
-    :recebimento_doc
-  ]
+  POSITIVE_OPERATIONS = %i[
+    debito
+    credito
+    recebimento_emprestimo
+    vendas
+    recebimento_ted
+    recebimento_doc
+  ].freeze
 
-  NEGATIVE_OPERATIONS = [
-    :boleto,
-    :financiamento,
-    :aluguel
-  ]
+  NEGATIVE_OPERATIONS = %i[
+    boleto
+    financiamento
+    aluguel
+  ].freeze
 
-  scope :positive_transactions, ->{ where(transaction_type: POSITIVE_OPERATIONS)}
-  scope :negative_transactions, ->{ where(transaction_type: NEGATIVE_OPERATIONS)}
+  scope :positive_transactions, -> { where(transaction_type: POSITIVE_OPERATIONS) }
+  scope :negative_transactions, -> { where(transaction_type: NEGATIVE_OPERATIONS) }
 
   before_save :parse_value
   before_save :parse_hour
 
   def self.balance
-    positive = self.positive_transactions.sum("value")
-    negative = self.negative_transactions.sum("value")
+    positive = positive_transactions.sum('value')
+    negative = negative_transactions.sum('value')
 
     positive - negative
   end

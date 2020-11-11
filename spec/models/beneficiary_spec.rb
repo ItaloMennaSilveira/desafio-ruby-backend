@@ -7,7 +7,7 @@ describe Beneficiary do
     it { expect(beneficiary).to belong_to(:shop) }
   end
 
-  describe "validations" do
+  describe 'validations' do
     it { should validate_uniqueness_of(:cpf) }
   end
 end

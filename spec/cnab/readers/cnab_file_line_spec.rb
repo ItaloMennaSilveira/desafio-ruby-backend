@@ -7,16 +7,16 @@ describe CNAB::Readers::CnabFileLine do
 
       subject = described_class.new(line).data
       expected =
-      {
-        type: 'recebimento_emprestimo',
-        occurrence_date: '20190301',
-        value: '0000013200',
-        cpf: '55641815063',
-        card: '3123****7687',
-        hour: "145607",
-        shop_owner: 'MARIA JOSEFINA',
-        shop_name: 'LOJA DO Ó - MATRIZ'
-      }
+        {
+          type: 'recebimento_emprestimo',
+          occurrence_date: '20190301',
+          value: '0000013200',
+          cpf: '55641815063',
+          card: '3123****7687',
+          hour: '145607',
+          shop_owner: 'MARIA JOSEFINA',
+          shop_name: 'LOJA DO Ó - MATRIZ'
+        }
 
       expect(subject).to eq(expected)
     end

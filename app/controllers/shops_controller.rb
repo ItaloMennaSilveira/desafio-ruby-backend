@@ -4,7 +4,7 @@ class ShopsController < ApplicationController
   end
 
   def upload_file
-    file = File.open(params[:file][:file].path, "r")
+    file = File.open(params[:file][:file].path, 'r')
 
     processor = ::CNAB::Services::ProcessFile.new
     processor.call(file)

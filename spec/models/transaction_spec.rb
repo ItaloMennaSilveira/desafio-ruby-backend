@@ -7,44 +7,44 @@ describe Transaction do
     it { expect(transaction).to belong_to(:shop) }
   end
 
-  describe "enums" do
+  describe 'enums' do
     it {
       should define_enum_for(:transaction_type)
-             .with_values(
-                debito: 1,
-                boleto: 2,
-                financiamento: 3,
-                credito: 4,
-                recebimento_emprestimo: 5,
-                vendas: 6,
-                recebimento_ted: 7,
-                recebimento_doc: 8,
-                aluguel: 9
-             )
+        .with_values(
+          debito: 1,
+          boleto: 2,
+          financiamento: 3,
+          credito: 4,
+          recebimento_emprestimo: 5,
+          vendas: 6,
+          recebimento_ted: 7,
+          recebimento_doc: 8,
+          aluguel: 9
+        )
     }
   end
 
-  describe "constants" do
-    POSITIVE_OPERATIONS = [
-      :debito,
-      :credito,
-      :recebimento_emprestimo,
-      :vendas,
-      :recebimento_ted,
-      :recebimento_doc
-    ]
+  describe 'constants' do
+    POSITIVE_OPERATIONS = %i[
+      debito
+      credito
+      recebimento_emprestimo
+      vendas
+      recebimento_ted
+      recebimento_doc
+    ].freeze
 
-    NEGATIVE_OPERATIONS = [
-      :boleto,
-      :financiamento,
-      :aluguel
-    ]
+    NEGATIVE_OPERATIONS = %i[
+      boleto
+      financiamento
+      aluguel
+    ].freeze
 
     it { expect(Transaction::POSITIVE_OPERATIONS).to eq(POSITIVE_OPERATIONS) }
     it { expect(Transaction::NEGATIVE_OPERATIONS).to eq(NEGATIVE_OPERATIONS) }
   end
 
-  describe "callbacks" do
+  describe 'callbacks' do
     it { is_expected.to callback(:parse_value).before(:save) }
     it { is_expected.to callback(:parse_hour).before(:save) }
   end
@@ -98,6 +98,3 @@ describe Transaction do
     end
   end
 end
-
-
-
